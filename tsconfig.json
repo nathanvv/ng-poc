@@ -16,6 +16,9 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@suite/backend": [
+        "libs/backend/src/index.ts"
+      ]
     }
   },
   "exclude": [

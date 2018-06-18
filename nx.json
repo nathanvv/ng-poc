@@ -7,5 +7,15 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "agent-workdesk": {
+      "tags": []
+    },
+    "agent-workdesk-e2e": {
+      "tags": []
+    },
+    "backend": {
+      "tags": []
+    }
+  }
 }

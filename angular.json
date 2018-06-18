@@ -2,12 +2,156 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "",
-  "projects": {},
+  "projects": {
+    "agent-workdesk": {
+      "root": "apps/agent-workdesk/",
+      "sourceRoot": "apps/agent-workdesk/src",
+      "projectType": "application",
+      "prefix": "suite",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/agent-workdesk",
+            "index": "apps/agent-workdesk/src/index.html",
+            "main": "apps/agent-workdesk/src/main.ts",
+            "polyfills": "apps/agent-workdesk/src/polyfills.ts",
+            "tsConfig": "apps/agent-workdesk/tsconfig.app.json",
+            "assets": [
+              "apps/agent-workdesk/src/favicon.ico",
+              "apps/agent-workdesk/src/assets"
+            ],
+            "styles": [
+              "apps/agent-workdesk/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/agent-workdesk/src/environments/environment.ts",
+                  "with": "apps/agent-workdesk/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "agent-workdesk:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "agent-workdesk:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "agent-workdesk:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/agent-workdesk/src/test.ts",
+            "polyfills": "apps/agent-workdesk/src/polyfills.ts",
+            "tsConfig": "apps/agent-workdesk/tsconfig.spec.json",
+            "karmaConfig": "apps/agent-workdesk/karma.conf.js",
+            "styles": [
+              "apps/agent-workdesk/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/agent-workdesk/src/favicon.ico",
+              "apps/agent-workdesk/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/agent-workdesk/tsconfig.app.json",
+              "apps/agent-workdesk/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "agent-workdesk-e2e": {
+      "root": "apps/agent-workdesk-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/agent-workdesk-e2e/protractor.conf.js",
+            "devServerTarget": "agent-workdesk:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/agent-workdesk-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "backend": {
+      "root": "libs/backend",
+      "sourceRoot": "libs/backend/src",
+      "projectType": "library",
+      "prefix": "suite",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/backend/src/test.ts",
+            "tsConfig": "libs/backend/tsconfig.spec.json",
+            "karmaConfig": "libs/backend/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/backend/tsconfig.lib.json",
+              "libs/backend/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "warnings": {
       "typescriptMismatch": false,
       "versionMismatch": false
     },
     "defaultCollection": "@nrwl/schematics"
-  }
+  },
+  "defaultProject": "agent-workdesk"
 }
