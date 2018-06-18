@@ -18,6 +18,9 @@
     "paths": {
       "@suite/backend": [
         "libs/backend/src/index.ts"
+      ],
+      "@suite/publish": [
+        "libs/publish/src/index.ts"
       ]
     }
   },
